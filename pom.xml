@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cyt</groupId>
+  <artifactId>cunyuetang</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>cunyuetang-api</module>
+        <module>cunyuetang-common</module>
+        <module>cunyuetang-service</module>
+        <module>cunyuetang-sdk</module>
+        <module>cunyuetang-domain</module>
+    </modules>
+
+    <name>cunyuetang</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <spring.boot.version>2.0.1.RELEASE</spring.boot.version>
+      <fastjson.version>1.2.45</fastjson.version>
+      <httpclient.version>4.5.5</httpclient.version>
+      <commons-lang3.version>3.3.2</commons-lang3.version>
+      <lombok.version>1.16.10</lombok.version>
+  </properties>
+
+  <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.1.RELEASE</version>
+  </parent>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+          <version>${spring.boot.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+
+      <!--fastjson-->
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>fastjson</artifactId>
+          <version>${fastjson.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>${commons-lang3.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>${httpclient.version}</version>
+      </dependency>
+
+      <!--aop切面-->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-aop</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>${lombok.version}</version>
+      </dependency>
+  </dependencies>
+
+    <profiles>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <!-- 设置默认激活这个配置 -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>nexus</id>
+                    <name>nexus</name>
+                    <url>http://172.16.0.156:8081/repository/maven-public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <!-- 发布环境 -->
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+  <build>
+      <plugins>
+          <plugin>
+              <artifactId>maven-assembly-plugin</artifactId>
+              <version>2.5.4</version>
+              <configuration>
+                  <descriptorRefs>
+                      <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
+                  <archive>
+                      <manifest>
+                          <mainClass/>
+                      </manifest>
+                  </archive>
+              </configuration>
+              <executions>
+                  <execution>
+                      <id>make-assembly</id>
+                      <goals>
+                          <goal>assembly</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
+      </plugins>
+  </build>
+
+  <distributionManagement>
+      <!--pom.xml这里<id> 和 settings.xml 配置 <id> 对应  -->
+<!--      <repository>-->
+<!--          <id>releases</id>-->
+<!--          <name>maven-releases</name>-->
+<!--          <url>http://172.16.0.156:8081/repository/maven-releases/</url>-->
+<!--          <uniqueVersion>true</uniqueVersion>-->
+<!--      </repository>-->
+      <snapshotRepository>
+          <id>snapshots</id>
+          <name>maven-snapshots</name>
+          <url>http://172.16.0.156:8081/repository/maven-snapshots/</url>
+      </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+      <repository>
+          <id>nexus</id>
+          <name>nexus</name>
+          <url>http://172.16.0.156:8081/repository/maven-public/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
+</project>
