@@ -8,6 +8,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class CunyuetangApiApplication {
     public static void main( String[] args ) {
         SpringApplication.run(CunyuetangApiApplication.class);
-        System.out.println( "^~^ ---------- Hello api ----------^~^" );
+        System.out.println( "^~^ ---------- cunyuetang api服务启动成功! ----------^~^" );
     }
 }
