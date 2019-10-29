@@ -29,13 +29,13 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //设置文档的标题
-                .title("janis Manage Swagger RESTful APIs")
+                .title("第一个框架")
                 //设置文档的描述
-                .description("综合管理 Swagger API 服务")
+                .description("第一个框架 API 文档")
                 //设置文档的License信息
                 .termsOfServiceUrl("http://swagger.io/")
                 //设置文档的联系方式 Contact 是 通讯录
-                .contact(new Contact("janis", "127.0.0.1", "janis@163.com.cn"))
+                .contact(new Contact("song", "127.0.0.1", ""))
                 //设置文档的版本信息
                 .version("1.0")
                 .build();
