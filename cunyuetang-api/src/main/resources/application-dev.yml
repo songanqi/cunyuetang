@@ -1,0 +1,17 @@
+dubbo:
+  application:
+    id: cunyuetang-api
+    name: cunyuetang-api
+  registry:
+    address: zookeeper://172.16.0.156:3999
+  protocol:
+    name: dubbo
+    port: 3888
+  scan:
+    basePackages: com.cyt.cunyuetang.api.controller
+  consumer:
+    timeout: 60000
+    check: false
+    group: dubbo
+logback:
+  file: cyt/log/api
