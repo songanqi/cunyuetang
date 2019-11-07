@@ -21,7 +21,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // api接口包扫描路径
-                .apis(RequestHandlerSelectors.basePackage("com.janis.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.cyt.cunyuetang.api.controller"))
                 //可以根据url路径设置哪些请求加入文档，忽略哪些请求
                 .paths(PathSelectors.any()).build();
     }

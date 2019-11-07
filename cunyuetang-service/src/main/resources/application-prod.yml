@@ -6,7 +6,7 @@ dubbo:
     address: zookeeper://172.16.0.156:3999
   protocol:
     name: dubbo
-    port: 21885
+    port: 3888
   scan:
     basePackages: com.cyt.cunyuetang.api.controller
   consumer:

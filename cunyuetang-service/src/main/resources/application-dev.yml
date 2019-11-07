@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    druid:
+      cyt:
+        url: jdbc:mysql://127.0.0.1:3306/cunyuetang?useUnicode=true&charscterEncoding=UTF-8&useSSL=false
+        username: root
+        password: klaq910326
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        initialSize: 5
+        maxActive: 50
+        minIdle: 5
+        maxWait: 10000
+        timeBetweenEvictionRunsMillis: 600000
+        minEvictableIdleTimeMillis: 1800000
+        removeAbandonedTimeout: 180
+        validationQuery: SELECT 1
+        removeAbandoned: true
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+
+dubbo:
+  application:
+    id: cunyuetang-service
+    name: cunyuetang-api
+  registry:
+    address: zookeeper://172.16.0.156:3999
+  protocol:
+    name: dubbo
+    port: 21886
+  scan:
+    basePackages: com.cyt.cunyuetang.service.modules.*.serviceimpl
+  provider:
+    timeout: 60000
+    group: dubbo
+logback:
+  file: cyt/log/service
